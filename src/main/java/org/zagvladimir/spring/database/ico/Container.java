@@ -1,4 +1,4 @@
-package org.zagvladimir.database.ico;
+package org.zagvladimir.spring.database.ico;
 
 public class Container {
 

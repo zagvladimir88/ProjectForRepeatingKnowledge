@@ -1,13 +1,16 @@
-package org.zagvladimir.bpp;
+package org.zagvladimir.spring.bpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.util.Arrays;
 
+
+@Component
 public class InjectBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware {
     private ApplicationContext applicationContext;
 

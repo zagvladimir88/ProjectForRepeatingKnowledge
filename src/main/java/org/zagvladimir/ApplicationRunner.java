@@ -1,10 +1,11 @@
 package org.zagvladimir;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.zagvladimir.database.pool.ConnectionPool;
-import org.zagvladimir.database.repository.CompanyRepository;
-import org.zagvladimir.database.repository.CrudRepository;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.zagvladimir.spring.config.ApplicationConfiguration;
+import org.zagvladimir.spring.database.pool.ConnectionPool;
+import org.zagvladimir.spring.database.repository.CrudRepository;
+import org.zagvladimir.spring.service.CompanyService;
 
 import java.io.Serializable;
 
@@ -17,13 +18,16 @@ public class ApplicationRunner {
         System.out.println(BeanFactoryPostProcessor.class.isAssignableFrom(value.getClass()));
         System.out.println(Serializable.class.isAssignableFrom(value.getClass()));
 
-        try (var context = new ClassPathXmlApplicationContext("application.xml")) {
+        try (var context = new AnnotationConfigApplicationContext()) {
+            context.register(ApplicationConfiguration.class);
+            context.getEnvironment().setActiveProfiles("web","prod");
+            context.refresh();
             //      clazz -> String -> Map<String, Object>
-            var connectionPool = context.getBean("p1", ConnectionPool.class);
+            var connectionPool = context.getBean("pool1", ConnectionPool.class);
             System.out.println(connectionPool);
 
-            var companyRepository = context.getBean("companyRepository", CrudRepository.class);
-            System.out.println(companyRepository.findById(1));
+            var companyService = context.getBean(CompanyService.class);
+            System.out.println(companyService.findById(1));
         }
     }
 }

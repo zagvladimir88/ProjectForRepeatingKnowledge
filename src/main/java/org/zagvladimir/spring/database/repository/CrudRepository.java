@@ -1,4 +1,4 @@
-package org.zagvladimir.database.repository;
+package org.zagvladimir.spring.database.repository;
 
 import java.util.Optional;
 
