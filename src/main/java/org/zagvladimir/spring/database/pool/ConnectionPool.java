@@ -2,13 +2,14 @@ package org.zagvladimir.spring.database.pool;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-
+@Slf4j
 @RequiredArgsConstructor
 @Component(value = "pool1")
 public class ConnectionPool {
@@ -20,11 +21,11 @@ public class ConnectionPool {
 
     @PostConstruct
     public void init() {
-        System.out.println("Init connection pool");
+        log.info("Init connection pool");
     }
 
     @PreDestroy
     private void destroy() {
-        System.out.println("Clean connection pool");
+        log.info("Clean connection pool");
     }
 }

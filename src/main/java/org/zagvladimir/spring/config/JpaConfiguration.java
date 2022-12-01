@@ -1,17 +1,19 @@
 package org.zagvladimir.spring.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.zagvladimir.spring.config.condition.JpaCondition;
 
 import javax.annotation.PostConstruct;
 
+@Slf4j
 @Conditional(JpaCondition.class)
 @Configuration
 public class JpaConfiguration {
 
     @PostConstruct
     void init(){
-        System.out.println("Jpa configuration is enable");
+        log.info("Jpa configuration is enable");
     }
 }
