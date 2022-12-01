@@ -18,17 +18,9 @@ import org.zagvladimir.spring.database.repository.CrudRepository;
 import org.zagvladimir.spring.database.repository.UserRepository;
 import org.zagvladimir.web.config.WebConfiguration;
 
-//@ImportResource("classpath:application.xml")
+
 @Import(WebConfiguration.class)
 @Configuration
-@PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "org.zagvladimir",
-        useDefaultFilters = false,
-        includeFilters = {
-                @Filter(type = FilterType.ANNOTATION, value = Component.class),
-                @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CrudRepository.class),
-                @Filter(type = FilterType.REGEX, pattern = "org\\..+Repository")
-        })
 public class ApplicationConfiguration {
 
 
