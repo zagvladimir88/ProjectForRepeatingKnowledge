@@ -12,6 +12,7 @@ import org.zagvladimir.spring.database.repository.CrudRepository;
 import org.zagvladimir.spring.dto.CompanyReadDto;
 import org.zagvladimir.spring.listener.entity.EntityEvent;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +34,7 @@ class CompanyServiceTest {
 
     @Test
     void findById() {
-        doReturn(Optional.of(new Company(COMPANY_ID)))
+        doReturn(Optional.of(new Company(COMPANY_ID,null, Collections.emptyMap())))
                 .when(companyRepository).findById(COMPANY_ID);
         var actualResult = companyService.findById(COMPANY_ID);
     assertTrue(actualResult.isPresent());

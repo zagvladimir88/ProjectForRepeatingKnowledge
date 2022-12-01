@@ -12,6 +12,7 @@ import org.zagvladimir.spring.database.entity.Company;
 import org.zagvladimir.spring.database.pool.ConnectionPool;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Slf4j
@@ -36,7 +37,7 @@ public class CompanyRepository implements CrudRepository<Integer, Company>{
     @Override
     public Optional<Company> findById(Integer id) {
         log.warn("FindById method...");
-        return Optional.of(new Company(id));
+        return Optional.of(new Company(id,null, Collections.emptyMap()));
     }
 
     @Override
